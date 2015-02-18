@@ -1,5 +1,7 @@
 # Simple Javascript Drawing App
 
+![](https://github.com/rockbandit/Javascript-Drawing/blob/master/screenshot/screenshot.png)
+
 I've been playing around with some ideas on how to use a combination of Javascript and Node.js to create a realtime interactive drawing game. I still have a long way to go, but this is what I have so far, while trying to flesh out my ideas.
 
 ## Requirements
