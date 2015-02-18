@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+  <!-- SCRIPTS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js" type="text/javascript" ></script>
+  <script src="js/jqscribble/jquery.jqscribble.js" type="text/javascript"></script>
+  <script src="js/jqscribble/jqscribble.extrabrushes.js" type="text/javascript"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns" style="margin-top: 10px;">
+        <h4>Let's Draw Something</h4>
+
+        <div id="pick-colors" style="float:left;padding-top:4px;">Pick color:</div>
+
+          <div class="color-box" style="background-color:#000000;" onclick='$("#drawing").data("jqScribble").update({brushColor: "rgb(0,0,0)", brushSize: 2});'></div>
+          <div class="color-box" style="background-color:#F51B29;" onclick='$("#drawing").data("jqScribble").update({brushColor: "rgb(241,27,41)", brushSize: 2});'></div>
+          <div class="color-box" style="background-color:#F58B1B;" onclick='$("#drawing").data("jqScribble").update({brushColor: "rgb(241,139,27)", brushSize: 2});'></div>
+          <div class="color-box" style="background-color:#F0EC07;" onclick='$("#drawing").data("jqScribble").update({brushColor: "rgb(240,236,7)", brushSize: 2});'></div>
+          <div class="color-box" style="background-color:#1CD42B;" onclick='$("#drawing").data("jqScribble").update({brushColor: "rgb(28,212,43)", brushSize: 2});'></div>
+          <div class="color-box" style="background-color:#172DD1;" onclick='$("#drawing").data("jqScribble").update({brushColor: "rgb(23,45,209)", brushSize: 2});'></div>
+          <div class="color-box" style="background-color:#9F17D1;" onclick='$("#drawing").data("jqScribble").update({brushColor: "rgb(159,23,209)", brushSize: 2});'></div>
+          <div class="color-box" style="background-color:#FFFFFF;" onclick='$("#drawing").data("jqScribble").update({brushColor: "rgb(255,255,255)", brushSize: 10});'></div>
+        </div>
+
+        <canvas id="drawing"></canvas>
+
+        <p>	<a href="#" onclick='$("#drawing").data("jqScribble").clear();'>Clear</a> |
+            <a href="#" onclick='save();'>Submit</a>
+            </p>
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script>
+
+  function save()
+  {
+    $("#drawing").data("jqScribble").save(function(imageData)
+    {
+      console.log("Saving file. . . ");
+        $.post('js/jqscribble/image_save.php', {imagedata: imageData}, function(response)
+        {
+          console.log(response);
+          //$('body').append(response);
+        });
+    });
+  }
+
+  $(document).ready(function()
+  {
+    $("#drawing").jqScribble();
+  });
+  </script>
+</body>
+</html>
